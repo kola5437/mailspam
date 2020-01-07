@@ -1,0 +1,30 @@
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+def send_mail():
+	login = 'your mail'
+	password = 'your password'
+	url = 'smtp.mail.com'
+	toaddr = recipient''
+
+	msg = MIMEMultipart()
+	msg['Subject'] = 'heading'
+	msg['From'] = 'sender'
+	body = 'text'
+	msg.attach(MIMEText(body,'plain'))
+
+
+	try:
+		server = smtplib.SMTP_SSL(url,465)
+	except TimeoutError:
+		print('No connect')
+
+	server.login(login,password)
+	server.sendmail(login,toaddr,msg.as_string())
+	server.quit()
+def main():
+	send_mail()
+
+if __name__ == '__main__':
+	main()
